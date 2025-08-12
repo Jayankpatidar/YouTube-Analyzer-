@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Analyzer - Premium UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white font-sans">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-red-500 tracking-wide">YouTube Analyzer</a>
+            <nav class="space-x-6 text-lg">
+                <a href="#home" class="hover:text-red-400 transition">Home</a>
+                <a href="#services" class="hover:text-red-400 transition">Services</a>
+                <a href="#about" class="hover:text-red-400 transition">About</a>
+                <a href="#contact" class="hover:text-red-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center text-center px-6">
+        <div
+            class="absolute inset-0 bg-[url('https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')] bg-cover bg-center opacity-20">
+        </div>
+        <div class="glass rounded-xl p-10 relative z-10 max-w-3xl text-white shadow-xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Turn Data into Channel Growth</h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-6">Discover powerful insights that help you grow smarter,
+                faster, and better on YouTube.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <input type="text" id="channelInput" placeholder="Enter channel username or ID"
+                    class="px-4 py-3 rounded-lg w-full sm:w-80 bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-red-500" />
+                <button id="start-btn"
+                    class="bg-red-600 hover:bg-red-700 transition px-6 py-3 rounded-lg font-semibold">Get Started</button>
+            </div>
+            <p id="error-message" class="text-red-400 mt-2 hidden">Please enter a valid channel username or ID</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 bg-gray-900">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">What You’ll Get</h2>
+            <p class="text-gray-400 mb-12">Supercharge your strategy with actionable insights & beautiful visuals.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Card -->
+                <div
+                    class="bg-white/5 hover:bg-white/10 transition rounded-xl shadow-md p-6 text-left border border-white/10">
+                    <img src="https://images.pexels.com/photos/31650949/pexels-photo-31650949.jpeg"
+                        class="w-full h-48 object-cover rounded-lg mb-4" />
+                    <h3 class="font-semibold text-xl mb-2">Deep Data Analysis</h3>
+                    <p class="text-gray-400">Know what works and why—track every stat that matters.</p>
+                </div>
+                <!-- Card -->
+                <div
+                    class="bg-white/5 hover:bg-white/10 transition rounded-xl shadow-md p-6 text-left border border-white/10">
+                    <img src="https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg"
+                        class="w-full h-48 object-cover rounded-lg mb-4" />
+                    <h3 class="font-semibold text-xl mb-2">Content Strategy</h3>
+                    <p class="text-gray-400">Get smart suggestions for topics, formats & timing.</p>
+                </div>
+                <!-- Card -->
+                <div
+                    class="bg-white/5 hover:bg-white/10 transition rounded-xl shadow-md p-6 text-left border border-white/10">
+                    <img src="https://images.pexels.com/photos/7947758/pexels-photo-7947758.jpeg"
+                        class="w-full h-48 object-cover rounded-lg mb-4" />
+                    <h3 class="font-semibold text-xl mb-2">Visual Performance</h3>
+                    <p class="text-gray-400">See your stats in clean, colorful dashboards & charts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 bg-gradient-to-b from-black via-gray-900 to-black text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
+            <p class="text-gray-300 text-lg mb-8">We help creators like you unlock growth using intelligent YouTube
+                insights.</p>
+            <div class="glass p-6 md:p-10 rounded-xl text-left">
+                <p class="text-gray-200 text-lg leading-relaxed">
+                    The <span class="text-red-400 font-semibold">YouTube Growth Analyzer</span> helps creators track
+                    views, subs, and watch time with precision. Our AI-backed models show patterns, compare performance,
+                    and give you the tools to grow with purpose. Less guesswork. More results.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-gray-950 text-center">
+        <div class="max-w-xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
+            <p class="text-gray-400 mb-10">We'd love to hear from you! Reach out for help, ideas or feedback.</p>
+            <form class="space-y-5">
+                <input type="text" placeholder="Your Name"
+                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-red-500" />
+                <input type="email" placeholder="Your Email"
+                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-red-500" />
+                <textarea rows="4" placeholder="Your Message"
+                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                <button class="w-full bg-red-600 hover:bg-red-700 transition px-6 py-3 rounded-lg font-semibold">Send
+                    Message</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 text-center text-gray-400 py-6">
+        © 2025 YouTube Analyzer. Crafted with passion for creators.
+    </footer>
+
+    <script>
+        document.getElementById('start-btn').addEventListener('click', async function () {
+            const channelInput = document.getElementById('channelInput').value.trim();
+            const errorElement = document.getElementById('error-message');
+
+            if (!channelInput) {
+                errorElement.textContent = "Please enter a channel username or ID";
+                errorElement.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                // it's a username and try to convert to channel ID
+                const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                    ? 'http://localhost:5000'
+                    : 'https://yt-analyzer-api.onrender.com';
+
+                const response = await fetch(`${API_BASE_URL}/api/channels/username/${(channelInput)}`);
+
+                if (!response.ok) {
+                    throw new Error('Channel not found');
+                }
+
+                const data = await response.json();
+
+                if (data.channelId) {
+                    window.location.href = `home1.html?channelId=${data.channelId}`;
+                } else {
+                    throw new Error('Channel ID not found');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                errorElement.textContent = "Could not find channel. Please check the username or try with channel ID.";
+                errorElement.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

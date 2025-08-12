@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python (if using backend scripts too)
+__pycache__/
+*.pyc
+
+# MongoDB dump files
+dump/
+
+# Sensitive config
+config.js

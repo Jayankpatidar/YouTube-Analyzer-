@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.0.1"></script>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="bg-red-700 text-white py-6 shadow px-4 flex justify-between items-center">
+        <div class="flex items-center gap-8">
+            <h1 class="text-3xl font-bold">YouTube Analyzer Dashboard</h1>
+        </div>
+        <div class="flex items-center gap-2">
+        </div>
+    </header>
+
+    <!-- Channel Banner -->
+    <section class="bg-[#b12c2c] text-white py-6 px-4 md:px-10 flex flex-col md:flex-row items-center gap-4">
+        <div class="flex-1">
+            <h2 id="channelTitle" class="text-2xl font-semibold">Channel Name</h2>
+            <p id="channelHandle" class="text-sm">c/btechyofficial</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-center flex-1">
+            <div>
+                <p class="font-semibold text-lg">Subscribers</p>
+                <p id="subscriberCount"></p>
+            </div>
+            <div>
+                <p class="font-semibold text-lg">Views</p>
+                <p id="viewCount"></p>
+            </div>
+            <div>
+                <p class="font-semibold text-lg">Videos</p>
+                <p id="videoCount"></p>
+            </div>
+            <div>
+                <p class="font-semibold text-lg">Created On</p>
+                <p id="publishedAt"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Buttons -->
+    <section class="bg-[#b12c2c] text-white py-6 px-4 md:px-10 flex flex-col md:flex-row items-center gap-4">
+        <button onclick="showSection('stats')"
+            class="bg-white text-red-700 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
+            Channel Statistics
+        </button>
+        <button onclick="showSection('analysis')"
+            class="bg-white text-red-700 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
+            Video Analysis
+        </button>
+        <button onclick="showSection('recommend')"
+            class="bg-white text-red-700 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
+            Recommendation
+        </button>
+        <button onclick="showSection('highperform')"
+            class="bg-white text-red-700 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition">
+            High Performing Video
+        </button>
+    </section>
+
+    <!-- Sections -->
+    <section id="stats" class="max-w-6xl mx-auto px-4 py-8 hidden">
+        <div class="bg-white rounded shadow p-4">
+            <h3 class="text-red-700 text-lg font-semibold mb-2">Channel Statistics</h3>
+            <div id="channelStatsContent"></div>
+        </div>
+    </section>
+
+    <section id="analysis" class="max-w-6xl mx-auto px-4 py-8 hidden">
+        <div class="bg-white rounded shadow p-4">
+            <h3 class="text-red-700 text-lg font-semibold mb-2">Video Analysis</h3>
+
+            <div class="mb-8">
+                <h4 class="text-red-700 text-md font-semibold mb-2">Views, Likes, and Comments per Video</h4>
+                <div class="relative w-full" style="height: 70vh; min-height: 400px">
+                    <canvas id="stackedBarChart"></canvas>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-red-700 text-md font-semibold mb-2">Engagement Ratio (Comments to Likes)</h4>
+                <div class="chart-container" style="position: relative; height:400px; width:100%">
+                    <canvas id="engagementRatioChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <h4 class="text-red-700 text-md font-semibold mb-2">Upload Time Distribution(Avg Views to Time Interval)</h4>
+                <div class="chart-container" style="position: relative; height:400px; width:100%">
+                    <canvas id="uploadTimeHist"></canvas>
+                </div>
+            </div>
+            
+
+            <div class="mb-8">
+                <h4 class="text-red-700 text-md font-semibold mb-2">Funnel Chart (Views to Likes)</h4>
+                <div class="chart-container" style="position: relative; height:600px; width:100%">
+                    <div id="funnelChart" style="width: 100%; height: 600px;"></div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-red-700 text-md font-semibold mb-2">Time Duration (Video Count to its Duration)</h4>
+                <div class="chart-container" style="position: relative; height:400px; width:100%">
+                    <canvas id="timeDurationChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="recommend" class="max-w-6xl mx-auto px-4 py-8 hidden">
+        <div class="bg-white rounded shadow p-4">
+            <h3 class="text-red-700 text-lg font-semibold mb-2">Recommendation</h3>
+            <div id="recommendationContent">
+                <h2>Recommended Upload Details</h2>
+                <p id="best-upload-time">Best time to upload: </p>
+                <p id="best-duration">Best video duration: </p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="highperform" class="max-w-6xl mx-auto px-4 py-8 hidden">
+        <div class="bg-white rounded shadow p-4">
+            <h3 class="text-red-700 text-lg font-semibold mb-2">High Performing Video</h3>
+            <div id="highPerformingContent">
+                <!-- Chart container -->
+                <div class="mt-4">
+                    <h4 class="text-gray-700 font-medium mb-3">Performance Metrics</h4>
+                    <div class="chart-container relative h-96">
+                        <canvas id="reachChart"></canvas>
+                    </div>
+                </div>
+                <div id="videoMetricsSection" class="mt-4">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Linking external JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
